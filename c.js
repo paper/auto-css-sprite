@@ -361,10 +361,8 @@ box.addEventListener("drop", function(e){
       
       imagedata.inImagedataImages = inImagedataImages;
       
-      console.log("===")
-      console.log( imagedata.inImagedataImages );
-
-      //console.log( imagedata.inImagedataImages )
+      //console.log("===")
+      //console.log( imagedata.inImagedataImages );
       
       if( images2.length == 0 ){
         canvas.width = w;
@@ -374,6 +372,21 @@ box.addEventListener("drop", function(e){
         
         console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxx")
         console.log( doneImg[0].inImagedataImages );
+        
+        (function(){
+          // 得到可以生成对应css的数据
+          for(var i=0 ,len=doneImg[0].inImagedataImages.length;i<len; i++){
+            var t = doneImg[0].inImagedataImages[i];
+            
+            spriteCss +=  "[ name = " + t.name + 
+                          ", x = " + t.x +
+                          ", y = "+ t.y +
+                          ", width = "+ t.w + 
+                          ", height = " + t.h + " ]\r\n";
+          }
+          
+          console.log(spriteCss);
+        })();
         
         return;
       }
