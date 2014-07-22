@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>canvas house</title>
+  <style>
+    *{margin:0;padding:0;}
+    body{background-color:#eee;font:12px/1.5 tahoma;overflow:hidden;}
+    
+    .page{padding:10px;}
+    canvas{background-color:#000;display:block;margin-bottom:5px;}
+    
+    #canvas-w{width:660px;}
+    #canvas-w canvas{
+      float:left;
+      margin:0 10px 10px 0;
+    }
+    
+    .drag-box{
+      width:240px;
+      height:240px;
+      border:1px dashed #bbb;
+      position:fixed;
+      right:10px;
+      bottom:10px;
+      background-color:#e7e7e7;
+    }
+    .drag-box p{
+      text-align:center;
+      line-height:240px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+  
+  <canvas width="1000" height="1000" id="J-canvas"></canvas>
+  <textarea autocomplete="off" id="J-sprite-css"></textarea>
+  
+  <div id="J-drag-box" class="drag-box">
+    <p>Drag img here</p>
+  </div>
+
+  <script src="c.js"></script>
+  </div>
+</body>
+</html>
