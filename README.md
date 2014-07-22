@@ -13,10 +13,9 @@ node-sprite
 
 而且代码有点乱。。。还在尝试不同算法，目前使用动态规划。
 
-慢慢来～～
+慢慢来～～ :D
 
 
-**例图：**
 ![](./sprite-images/sprite-big-and-small.png)
 
 **对应的数据：**
