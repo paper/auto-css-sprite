@@ -2,46 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>canvas house</title>
-  <style>
-    *{margin:0;padding:0;}
-    body{background-color:#eee;font:12px/1.5 tahoma;overflow:hidden;}
-    
-    .page{padding:10px;}
-    canvas{background-color:#000;display:block;margin-bottom:5px;}
-    
-    #canvas-w{width:660px;}
-    #canvas-w canvas{
-      float:left;
-      margin:0 10px 10px 0;
-    }
-    
-    .drag-box{
-      width:240px;
-      height:240px;
-      border:1px dashed #bbb;
-      position:fixed;
-      right:10px;
-      bottom:10px;
-      background-color:#e7e7e7;
-    }
-    .drag-box p{
-      text-align:center;
-      line-height:240px;
-    }
-  </style>
+  <title>Auto sprite</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
+  <link rel="stylesheet" href="css/style.css">
+  <!-- http://www.bootcss.com/p/font-awesome/ -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  
+  <script src="js/jquery-2.1.1.min.js"></script>
 </head>
 <body>
   <div class="page">
-  
-  <canvas width="1000" height="1000" id="J-canvas"></canvas>
-  <textarea autocomplete="off" id="J-sprite-css"></textarea>
-  
-  <div id="J-drag-box" class="drag-box">
-    <p>Drag img here</p>
-  </div>
+    <div id="tip"><p>please wait ...</p></div>
+    
+    <section class="main">
+      <canvas width="1" height="1" id="J-canvas"></canvas>
+      
+      <div class="sprite-css-wrap" id="J-sprite-css-wrap">
+        <div class="sprite-css-in">
+          <textarea autocomplete="off" id="J-sprite-css" class="sprite-css"></textarea>
+        </div>
+      </div>
+    </section>
+    
+    <section class="side">
+      <div id="J-drag-box" class="drag-box">
+        <p>Drag img here :D</p>
+      </div>
+    </section>
+    
+    <footer class="foot">
+      <div class="btns-wrap" id="J-btns-wrap">
+        <button class="btn" id="saveImageBtn" onclick="saveImageInfo();">
+          <i class="icon-save"></i><span>保存图片</span>
+        </button>
+        <button class="btn" id="changeCanvasColorBtn" onclick="changeCanvasColor();">
+          <i class="icon-repeat"></i><span>反转canvas颜色</span>
+        </button>
+      </div>
+    </footer>
+    
 
-  <script src="c.js"></script>
+    <!--
+      // 长条移动的步长
+      // 测试数据：【所以强烈建议 使用 chrome】
+      // [chrome35,  xStep=1, big-and-small ] 消耗的时间：2112, 最佳利用率：0.964
+      
+      // [chrome35,  xStep=2, big-and-small ] 消耗的时间：1023, 最佳利用率：0.955
+      // [chrome35,  xStep=4, big-and-small ] 消耗的时间：564 , 最佳利用率：0.937
+      // [firefox30, xStep=2, big-and-small ] 消耗的时间：6682, 最佳利用率：0.955
+      // [firefox30, xStep=4, big-and-small ] 消耗的时间：3701, 最佳利用率：0.937
+      var xStep = 2;
+
+      
+      // 如果 x 值已经知道没有了位置可以放矩形，后续的就不判断了，直接pass
+      // [chrome35,  xStep=2, big-and-small] 计算时间从 1338  ms -> 1020 ms
+      // [firefox30, xStep=2, big-and-small] 计算时间从 12540 ms -> 6577 ms
+      if( xWrap.indexOf(x) > -1 ) continue;
+    -->
+    <script src="js/algo.js"></script>
+    <script src="js/c.js"></script>
+    
   </div>
 </body>
 </html>

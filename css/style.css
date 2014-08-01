@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+/*----- 基本 -----*/
+*{margin:0;padding:0;}
+html, body{
+  width:100%;
+  height:100%;
+}
+body{background-color:#DAF0F6;font:14px/1.5 monaco,consolas,menlo;overflow:hidden;}
+.page{ height:100%; }
+canvas{
+  background-color:#fff;
+  display:block;
+  margin:10px;
+  -moz-user-select:none;
+  -webkit-user-select:none; 
+  user-select:none; 
+}
+
+/*----- 布局 -----*/
+.main{
+  height:100%;
+  margin-right:240px;
+  position:relative;
+}
+
+.foot{}
+
+/*----- 样式输出区域 -----*/
+.sprite-css-wrap{
+  width:100%;
+  position:absolute;
+  bottom:64px;
+  left:0;
+  display:none;
+}
+.sprite-css-in{
+  padding:10px;
+}
+
+.sprite-css{
+  font:inherit;
+  font-size:12px;
+  resize:none;
+  width:100%;
+  height:200px;
+}
+
+/*----- 拖拽区域 -----*/
+.drag-box{
+  width:240px;
+  height:100%;
+  border-left:1px dashed #aaa;
+  position:absolute;
+  right:0;
+  bottom:0;
+  background-color:#e8e8e8;
+  z-index:1000;
+}
+.drag-box p{
+  position:absolute;
+  top:50%;
+  margin-top:-0.5em;
+  width:100%;
+  text-align:center;
+  font-size:16px;
+}
+
+.drag-box-hover{
+  background-color:#0d83a3;
+  border-left-color:#0d83a3;
+  color:#fff;
+}
+
+/*----- 按钮 -----*/
+.btns-wrap{
+  padding:10px;
+  background-color:#b9d5dd;
+  width:100%;
+  position:absolute;
+  z-index:1100;
+  left:0;
+  bottom:0;
+  border-top:1px solid #a3c4cd;
+}
+.btn{
+  float:left;
+  margin-right:10px;
+  padding:4px 8px;
+  cursor:pointer;
+}
+.btn span{
+  margin:0 0 0 4px;
+}
+
+/*----- 提示 -----*/
+#tip{
+  position:absolute;
+  top:0;
+  left:50%;
+  display:none;
+  z-index:2000;
+  
+  -webkit-transform: translate(-50%, 0px);
+  -moz-transform: translate(-50%, 0px);
+  transform: translate(-50%, 0px);
+}
+#tip p{
+  background-color:#277084;
+  color:#fff;
+  padding:10px 15px;
+  text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
