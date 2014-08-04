@@ -38,21 +38,20 @@ auto-css-sprite
 ####性能和精度
 这是个NP问题，所以只能求近似最佳值。
 影响这个算法性能和精度的地方有：
-
 1. xStep的值
 2. boxHeightStep 的值
 3. Sample 个数
 
 
-		// L 移动的步长
-		// 【测试说明】以下测试，都是没有开启这2个开发工具。开启 firebug 或 chrome开发者工具，会影响测试值
-		// 【测试环境】chrome35 和 firefox30，样本10个，boxHeightStep为16px
-		// 【测试数据】big-and-small里面79张图片，单位 ms （毫秒）
-		
-		// xStep=1 chrome消耗的时间：1907, firefox消耗的时间：890, 最佳利用率：0.961
-		// xStep=2 chrome消耗的时间：893 , firefox消耗的时间：506, 最佳利用率：0.955
-		// xStep=4 chrome消耗的时间：517 , firefox消耗的时间：286, 最佳利用率：0.938
-		var xStep = 2;
+    // L 移动的步长
+    // 【测试说明】以下测试，都是没有开启这2个开发工具。开启 firebug 或 chrome开发者工具，会影响测试值
+    // 【测试环境】chrome35 和 firefox30，样本10个，boxHeightStep为16px
+    // 【测试数据】big-and-small里面79张图片，单位 ms （毫秒）
+
+    // xStep=1 chrome消耗的时间：1907, firefox消耗的时间：890, 最佳利用率：0.961
+    // xStep=2 chrome消耗的时间：893 , firefox消耗的时间：506, 最佳利用率：0.955
+    // xStep=4 chrome消耗的时间：517 , firefox消耗的时间：286, 最佳利用率：0.938
+    var xStep = 2;
     
 所以，如果你想要更高的精度（毕竟是本地程序，多等待那么几秒，问题不大）
 
@@ -66,13 +65,13 @@ auto-css-sprite
 ####最后说明
 写这个也是因为用过了[cssgaga](http://www.99css.com/archives/tag/cssgaga)，一个很棒的工具！因为作者推荐大家 [不要重复造轮子](http://www.99css.com/archives/977)，只要会用这个工具就可以了。
 
-看过文章和评论后，研究一下文章给出的  [Optimal Rectangle Packing: Initial Results](http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf)，单独提取 [algo.js](https://github.com/paper/auto-css-sprite/blob/master/js/algo.js) 核心算法 ，内有非常详细的注释。
+看过文章和评论后，研究一下文章给出的  [Optimal Rectangle Packing: Initial Results](http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf)，单独提取 [algo.js](./js/algo.js) 核心算法 ，内有非常详细的注释。
 
 大家可以随意改成 java ，py 或 php等版本。 :D
 
 
 ## changelog
-地址: https://github.com/paper/auto-css-sprite/blob/master/changelog.md
+地址: [changelog.md](./changelog.md)
 
 
 
