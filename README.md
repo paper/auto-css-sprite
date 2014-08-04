@@ -62,7 +62,7 @@ auto-css-sprite
 2. Sample 多少个才合理？
 3. 有没有更好更快的算法？
 
-####最后说明
+##最后说明
 写这个也是因为用过了[cssgaga](http://www.99css.com/archives/tag/cssgaga)，一个很棒的工具！因为作者推荐大家 [不要重复造轮子](http://www.99css.com/archives/977)，只要会用这个工具就可以了。
 
 看过文章和评论后，研究一下文章给出的  [Optimal Rectangle Packing: Initial Results](http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf)，单独提取 [algo.js](./js/algo.js) 核心算法 ，内有非常详细的注释。
