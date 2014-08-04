@@ -39,7 +39,9 @@
         s : totalArea,  // 图片总和面积
         w : box.w,      // 容器最小宽度
         h : box.h,      // 容器最小高度
-        r : boxIn,      // [ { w:160, h:160, p:0, x:10, y:20}, { w:128, h:128, p:50, x:13, y:21}, { w:50, h:50, p:9, x:33, y:12} ... ]
+        r : boxIn,      // [ { w:160, h:160, p:0, x:10, y:20}, 
+                             { w:128, h:128, p:50, x:13, y:21}, 
+                             { w:50, h:50, p:9, x:33, y:12} ... ]
         u : +parseFloat( totalArea / ( box.w * box.h ) ).toFixed(3) //利用率
         space : space   // 边界
     }
@@ -76,17 +78,18 @@
       // 容器初始化高度
       var boxInitHeight = maxHeightRect.h;
       
-      //最佳样本
+      // 最佳样本
       var nice = { u:0 };
       
-      //临时样本
+      // 临时样本
       var niceTemp = null;
       
-      // box 每次递增的高度
+      // box 每次递增的高度（标准图标的最小高度）
+      // 如果想要得到最佳值，boxHeightStep = 1 而且 sampleMax >= 160，但这会消耗很大性能
       var boxHeightStep = 16;
-      
+       
       // 样本个数
-      var n = 10;
+      var sampleMax = 10;
       
       var i = 0;
       
@@ -99,12 +102,18 @@
         if( niceTemp.u > nice.u ){
           nice = niceTemp;
         }
+
+        // 如果已找到最优解，立即结束
+        if( nice.u == 1 ){
+          callback(nice);
+          return;
+        }
         
         /*------------------------------------------------------
-          如果利用率大于 0.9 ，可以立马停下来了，由你自己决定
+          如果利用率大于 0.9（已经很不错了） ，可以立马停下来了，由你自己决定
           
           if( nice.u > 0.9 ){
-            callback && callback();
+            callback(nice);
             return;
           }
         --------------------------------------------------------*/
@@ -113,7 +122,7 @@
         setTimeout(function(){
           i++;
           
-          if( i >= n ){
+          if( i >= sampleMax ){
             cb();
             return;
           }
@@ -124,7 +133,7 @@
       }//end sampling
       
       sampling(function(){
-        callback( nice );
+        callback(nice);
       });
       
     }//end letsgo
@@ -155,7 +164,7 @@
       var totalHeight = 0;
       
       // 图片之间的间隙
-      var space = 2;
+      var space = 1;
       
       // 加上间隙，有助于查看sprite
       cloneArr.forEach(function(v,i){

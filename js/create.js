@@ -38,6 +38,7 @@ $(document).on({
   
 });
 
+// canvas 背景反转
 var changeCanvasColor = (function(){
   var i = 0;
   
@@ -117,6 +118,12 @@ function drawImage(url, x, y){
   });
 }
 
+function checkImagesAllLoaded(images, fileListLength, callback ){
+  if( images.length == fileListLength ){
+    callback && callback();
+  }
+}
+
 function reset(){
   images = [];
   canvas.width = c_width;
@@ -139,57 +146,58 @@ $box.on({
   },
   
   drop : function($e){
-    //jq 事件里面的 e，是进行封装过的。获取原始的event，需要使用 originalEvent 方法
-    
+    // jq 事件里面的 e，是进行封装过的
+    // 想要获取原始的event，需要使用 originalEvent
     var e = $e.originalEvent;
-
     e.preventDefault();
 
     //获取文件列表
     var fileList = e.dataTransfer.files;
+    var fileListLength = fileList.length;
     
     // console.log(fileList);
-    // lastModified  Date  Date {Mon Jul 21 2014 12:02:04 GMT+0800}
-    // mozFullPath   E:\Page\canvas_png\h4.png"
-    // name          "h4.png"
-    // path          ""
-    // size          30476 
-    // type          "image/png"
+    // 简单检测一下
     if (fileList.length == 0 || fileList[0].type.indexOf('image') === -1) {
       alert('请拖入图片');
       boxDropOver();
       return;
-   }
+    }
     
     boxDropStart();
     
     reset();
     
-    for(var i=0; i<fileList.length; i++){
+    for(var i=0; i<fileListLength; i++){
       (function(){
         var file = fileList[i];
-        
-        var img_name = file.name;
-      　var reader = new FileReader();
-      　var img = document.createElement('img');
 
-      　reader.onload = function(e) {
-          img.onload = function(){
-            img.name = img_name;
-            //console.log(img.name);
-            images.push([img, img.width, img.height]);
-          };
+        var imgName = file.name;
+        var reader = new FileReader();
+        var img = document.createElement('img');
+
+        reader.onload = function(){
         
-      　　img.src = this.result;
-      　};
-      　reader.readAsDataURL(file);
-      
+          img.onload = function(){
+            img.name = imgName;
+            images.push([img, img.width, img.height]);
+            
+            checkImagesAllLoaded(images, fileListLength, function(){
+              imagesAllLoadedCallback();
+            });
+            
+          };
+
+          img.src = this.result;
+          
+        };
+        
+        reader.readAsDataURL(file);
+
       })();
-    }
+    }//end fileList for
     
-    //后续再判断如果加载完毕，再
-    setTimeout(function(){
-      
+    function imagesAllLoadedCallback(){
+
       var demo = [];
       
       images.forEach(function(v){
@@ -202,10 +210,10 @@ $box.on({
         boxDropOver();
         
         var t2 = +new Date();
-        
-        console.log("消耗的时间：",  t2 - t1 );
+
+        console.log("消耗的时间：" + (t2 - t1) );
         console.log( "最佳利用率：",  nice.u );
-        console.log( nice );
+        //console.log( nice );
         
         var r = nice.r;
         var u = nice.u;
@@ -216,25 +224,27 @@ $box.on({
         canvas.width = nice.w;
         canvas.height = nice.h;
         
-        console.log(images)
+        // auto-css-sprite
+        var prefix = "acs-";
         
-        var d1 = parseInt(Math.random()*1000, 10) + "";
-        var d2 = parseInt(Math.random()*1000, 10) + "";
-        canvasImageName = 'auto-css-sprite-'+ d1 + d2 +'.png';
-        
-        
+        var now = new Date();
+        var d1 = parseInt(Math.random()*10000, 10) + "-";
+        var d2 = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate(); 
+        canvasImageName = prefix + d1 + d2 + '.png';
         
         //画图
-        for(var i=0; i<r.length; i++){
+        for(var i=0, len=r.length; i<len; i++){
           var temp = r[i];
           var p = temp.p;
           
           var img = images[p][0];
+          var name = img.name;
+          
           ctx.drawImage(img, temp.x, temp.y);
           
-          var img_name = img.name.replace(/[^\w-]/g, "_");
+          var imgName = name.replace(/[^\w-]/g, "_");
           
-          var classname = 'auto-css-sprite-'+ img_name;
+          var classname = prefix + imgName;
           
           spriteCss += '.'+ classname +'{'+
             'display:inline-block;'+
@@ -250,22 +260,22 @@ $box.on({
         }
         
         spriteDemo = '<!doctype html>'+
-          '<html lang="en">'+
+          '<html>'+
           '<head>'+
             '<meta charset="UTF-8">'+
-            '<title>Auto css sprite demo</title>'+
+            '<title>Auto CSS Sprite Demo</title>'+
             '<style> span{margin:10px;} '+ spriteCss +'</style>'+
           '</head>'+
           '<body>'+ spriteHtml +'</body>'+
           '</html>';
         
+        // 生成demo代码
         $spriteCssTextarea.val('').val(spriteDemo);
         
       });
       
-      
-      
-    }, 500);
+    }//end imagesAllLoadedCallback
+
   }
 });
 

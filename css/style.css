@@ -24,7 +24,15 @@ canvas{
   position:relative;
 }
 
-.foot{}
+.foot{
+  background-color:#b9d5dd;
+  width:100%;
+  position:absolute;
+  z-index:1100;
+  left:0;
+  bottom:0;
+  border-top:1px solid #a3c4cd;
+}
 
 /*----- 样式输出区域 -----*/
 .sprite-css-wrap{
@@ -57,13 +65,24 @@ canvas{
   background-color:#e8e8e8;
   z-index:1000;
 }
+
 .drag-box p{
   position:absolute;
   top:50%;
-  margin-top:-0.5em;
+  margin-top:-1em;
   width:100%;
   text-align:center;
   font-size:16px;
+  pointer-events:none;
+}
+.drag-box p i{
+  background:url(../img/images-ico.png) no-repeat;
+  height: 128px;
+  left: 50px;
+  opacity: 0.2;
+  position: absolute;
+  top: -118px;
+  width: 128px;
 }
 
 .drag-box-hover{
@@ -75,13 +94,7 @@ canvas{
 /*----- 按钮 -----*/
 .btns-wrap{
   padding:10px;
-  background-color:#b9d5dd;
-  width:100%;
-  position:absolute;
-  z-index:1100;
-  left:0;
-  bottom:0;
-  border-top:1px solid #a3c4cd;
+  overflow:hidden;
 }
 .btn{
   float:left;
@@ -91,6 +104,13 @@ canvas{
 }
 .btn span{
   margin:0 0 0 4px;
+}
+
+.github{
+  float:right;
+  margin:8px 8px 0 10px;
+  font-size:12px;
+  color:#5e9daf;
 }
 
 /*----- 提示 -----*/

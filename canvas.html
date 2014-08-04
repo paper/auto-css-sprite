@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Auto sprite</title>
+  <title>Auto CSS Sprite</title>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon.png" />
   
@@ -28,7 +28,7 @@
     
     <section class="side">
       <div id="J-drag-box" class="drag-box">
-        <p>Drag img here :D</p>
+        <p>Drag img here<i></i></p>
       </div>
     </section>
     
@@ -40,29 +40,13 @@
         <button class="btn" id="changeCanvasColorBtn" onclick="changeCanvasColor();">
           <i class="icon-repeat"></i><span>反转canvas颜色</span>
         </button>
+        
+        <a class="github" href="https://github.com/paper/auto-css-sprite" target="_blank"><img src="img/github-0.png" alt=""></a>
       </div>
     </footer>
-    
 
-    <!--
-      // 长条移动的步长
-      // 测试数据：【所以强烈建议 使用 chrome】
-      // [chrome35,  xStep=1, big-and-small ] 消耗的时间：2112, 最佳利用率：0.964
-      
-      // [chrome35,  xStep=2, big-and-small ] 消耗的时间：1023, 最佳利用率：0.955
-      // [chrome35,  xStep=4, big-and-small ] 消耗的时间：564 , 最佳利用率：0.937
-      // [firefox30, xStep=2, big-and-small ] 消耗的时间：6682, 最佳利用率：0.955
-      // [firefox30, xStep=4, big-and-small ] 消耗的时间：3701, 最佳利用率：0.937
-      var xStep = 2;
-
-      
-      // 如果 x 值已经知道没有了位置可以放矩形，后续的就不判断了，直接pass
-      // [chrome35,  xStep=2, big-and-small] 计算时间从 1338  ms -> 1020 ms
-      // [firefox30, xStep=2, big-and-small] 计算时间从 12540 ms -> 6577 ms
-      if( xWrap.indexOf(x) > -1 ) continue;
-    -->
     <script src="js/algo.js"></script>
-    <script src="js/c.js"></script>
+    <script src="js/create.js"></script>
     
   </div>
 </body>
