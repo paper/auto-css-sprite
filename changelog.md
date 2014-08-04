@@ -1,4 +1,4 @@
-auto-css-sprite Changelog
+auto-css-sprite
 ===========
 
 ## 1.1.0
