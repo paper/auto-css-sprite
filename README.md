@@ -43,6 +43,7 @@ auto-css-sprite
 2. boxHeightStep 的值
 3. Sample 个数
 
+
 		// L 移动的步长
 		// 【测试说明】以下测试，都是没有开启这2个开发工具。开启 firebug 或 chrome开发者工具，会影响测试值
 		// 【测试环境】chrome35 和 firefox30，样本10个，boxHeightStep为16px
