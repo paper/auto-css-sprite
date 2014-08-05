@@ -33,7 +33,7 @@
     </section>
     
     <footer class="foot">
-      <div class="btns-wrap" id="J-btns-wrap">
+      <div class="btns-wrap clearfix" id="J-btns-wrap">
         <button class="btn" id="saveImageBtn" onclick="saveImageInfo();">
           <i class="icon-save"></i><span>保存图片</span>
         </button>
@@ -41,7 +41,31 @@
           <i class="icon-repeat"></i><span>反转canvas颜色</span>
         </button>
         
-        <a class="github" href="https://github.com/paper/auto-css-sprite" target="_blank"><img src="img/github-0.png" alt=""></a>
+        <div class="link-wrap">
+          <a title="setting" class="setting" id="J-setting-btn"><i class="icon-cog"></i>
+            
+            <div class="setting-content" id="J-setting-content">
+              <div class="setting-content-in">
+                <form class="clearfix" onsubmit="return false;">
+                
+                  <label for="">class 标识</label>
+                  <input type="text" id="class-sign" placeholder="英文数字下划线或横杆" />
+                  
+                  <label for="">sprite 路径</label>
+                  <input type="text" id="sprite-path" placeholder="../images/" />
+                  
+                  <button class="btn" id="J-setting-ok-btn">
+                    <i class="icon-ok"></i><span>确定</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+            
+          </a>
+          
+          <a title="github" class="github" href="https://github.com/paper/auto-css-sprite" target="_blank"><i class="icon-github-alt"></i></a>
+        </div>
+        
       </div>
     </footer>
 

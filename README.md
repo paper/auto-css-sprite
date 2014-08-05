@@ -1,6 +1,26 @@
 auto-css-sprite
 ===========
 
+## changelog
+地址: [changelog.md](./changelog.md)
+
+## 帮助
+
+####布局与设计
+
+1. 整体页面简约为主，温和的色调，长时间使用，眼睛也不会疲劳
+2. 左侧显示canvas图片和demo文本（会自适应），右侧是拖入图片区域，下面是一些操作按钮区域
+3. “反转canvas颜色” 按钮，是为了让用户看得清比较偏白的图标
+
+####使用流程
+
+1. 拖一些图标进入“Drag img here” 区域时，底色会变，这时，你只要松手就可以了
+2. 系统会自动生成合并的图片，还有demo代码
+3. 由于浏览器限制，点击 “保存图片” 会新开窗口，然后在新开的窗口内，点击图片，会提示保存图片
+4. 右下角 “设置” ，可以设置 “class标识” 和 “sprite路径”，让你的class命名区别于其他
+5. class命名，采用 “acs” + “class标识” + “图片文件名” 。图片文件名任何不合法的字符都会被转化为 “-”。推荐“图片文件名”和“class标识”都是纯英文描述。比如：图片文件名 good.png、add.png 等等，class标识  一般是项目名称 projectName
+
+
 ## 算法
 
 主要参考  http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf 算法
@@ -55,14 +75,16 @@ auto-css-sprite
 
 所以，如果你想要更高的精度（毕竟是本地程序，多等待那么几秒，问题不大）
 
-请设置 xStep=1, Sample>=20, boxHeightStep <= 16
+请设置
+
+		xStep = 1; Sample >= 20; boxHeightStep <= 16
 
 ####更多思考
-1. 如何更加有效、智能的 改变 boxHeightStep 值？
+1. 如何更加有效、智能的 设置 boxHeightStep 最佳值？
 2. Sample 多少个才合理？
 3. 有没有更好更快的算法？
 
-##最后说明
+##结尾
 写这个也是因为用过了[cssgaga](http://www.99css.com/archives/tag/cssgaga)，一个很棒的工具！作者推荐大家 [不要重复造轮子](http://www.99css.com/archives/977)，只要会用这个工具就可以了。
 
 看过文章和评论后，研究一下文章给出的  [Optimal Rectangle Packing: Initial Results](http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf)，单独提取 [algo.js](./js/algo.js) 核心算法 ，内有非常详细的注释。
@@ -70,8 +92,7 @@ auto-css-sprite
 大家可以随意改成 java ，py 或 php等版本。 :D
 
 
-## changelog
-地址: [changelog.md](./changelog.md)
+
 
 
 

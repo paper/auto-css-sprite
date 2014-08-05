@@ -7,6 +7,7 @@ html, body{
   height:100%;
 }
 body{background-color:#DAF0F6;font:14px/1.5 monaco,consolas,menlo;overflow:hidden;}
+a,a:hover{color:#100D0D; text-decoration:none; cursor: pointer;}
 .page{ height:100%; }
 canvas{
   background-color:#fff;
@@ -16,6 +17,8 @@ canvas{
   -webkit-user-select:none; 
   user-select:none; 
 }
+.clearfix{}
+.clearfix:after{content:""; clear:both; display:table;}
 
 /*----- 布局 -----*/
 .main{
@@ -92,10 +95,6 @@ canvas{
 }
 
 /*----- 按钮 -----*/
-.btns-wrap{
-  padding:10px;
-  overflow:hidden;
-}
 .btn{
   float:left;
   margin-right:10px;
@@ -106,11 +105,68 @@ canvas{
   margin:0 0 0 4px;
 }
 
-.github{
+.btns-wrap{
+  padding:10px;
+}
+
+.link-wrap{
   float:right;
-  margin:8px 8px 0 10px;
-  font-size:12px;
-  color:#5e9daf;
+  margin:8px 3px 0 10px;
+}
+.link-wrap a{
+  margin:0 8px;
+  float:left;
+}
+.link-wrap i{
+  font-size:18px;
+}
+
+.link-wrap .setting{
+  position:relative;
+}
+
+.link-wrap .github{}
+
+/*----- 设置 -----*/
+.setting-content{
+  display:none;
+  position:absolute;
+  background-color:#fff;
+  border-radius:3px;
+  top:-185px;
+  left:-203px;
+  z-index:3000;
+  cursor: default;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+.setting-content:after{
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  right:10px;
+  width:0;
+  height:0;
+  border-top:10px solid #fff;
+  border-left:10px dashed transparent;
+  border-right:10px dashed transparent;
+}
+.setting-content-in{
+  padding:10px;
+}
+.setting-content form{}
+.setting-content form label{
+  display:block;
+}
+.setting-content form input{
+  display:block;
+  margin-bottom:10px;
+  padding:4px;
+  font-family: verdana;
+  width: 200px;
+}
+.setting-content form button{
+  float: right;
+  margin-right: 0;
 }
 
 /*----- 提示 -----*/

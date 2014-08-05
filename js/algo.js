@@ -153,7 +153,7 @@
       
       var cloneArr = JSON.parse(JSON.stringify(r));
       
-      // 最大宽度，最大高度，最小宽度
+      // 最大宽度，最大高度，最小高度
       var MAXW = 10000;
       var MAXH = 0;
       var MINH = 0;

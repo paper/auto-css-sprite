@@ -9,10 +9,12 @@ var $tip = $("#tip");
 var $btnsWrap = $("#J-btns-wrap");
 var $spriteCssWrap = $("#J-sprite-css-wrap");
 
+var $settingBtn = $("#J-setting-btn");
+var $settingContent = $("#J-setting-content");
+var $settingOkBtn = $("#J-setting-ok-btn");
+
 var $spriteCssTextarea = $("#J-sprite-css");
-var spriteCss = "";
-var spriteHtml = "";
-var spriteDemo = "";
+
 
 // 拖进来的图片
 var images = [];
@@ -20,6 +22,10 @@ var images = [];
 var canvasImageName = 'canvas.png';
 
 $(document).on({
+  click : function($e){
+    $settingContent.hide();
+  },
+  
   dragleave : function($e){
     $e.preventDefault();
   },
@@ -36,6 +42,36 @@ $(document).on({
     $e.preventDefault();
   }
   
+});
+
+/*----- 设置 ------*/
+var $classsign = $("#class-sign");
+var $spritepath = $("#sprite-path");
+
+localStorage["classsign"] = localStorage["classsign"] ? localStorage["classsign"] : "";
+localStorage["spritepath"] = localStorage["spritepath"] ? localStorage["spritepath"] : "";
+
+$classsign.val( localStorage["classsign"] );
+$spritepath.val( localStorage["spritepath"] );
+
+$settingContent.on("click", function($e){
+  $e.stopPropagation();
+});
+
+$settingBtn.on("click", function($e){
+  $e.stopPropagation();
+  $settingContent.toggle();
+});
+
+$settingOkBtn.on("click", function($e){
+  
+  var classsign = $.trim( $("#class-sign").val() );
+  var spritepath = $.trim( $("#sprite-path").val() );
+  
+  localStorage["classsign"] = classsign;
+  localStorage["spritepath"] = spritepath;
+  
+  $settingContent.hide();
 });
 
 // canvas 背景反转
@@ -212,7 +248,7 @@ $box.on({
         var t2 = +new Date();
 
         console.log("消耗的时间：" + (t2 - t1) );
-        console.log( "最佳利用率：",  nice.u );
+        console.log("最佳利用率：" + nice.u );
         //console.log( nice );
         
         var r = nice.r;
@@ -224,13 +260,34 @@ $box.on({
         canvas.width = nice.w;
         canvas.height = nice.h;
         
+        var classsign = localStorage["classsign"];
+        var spritepath = localStorage["spritepath"];
+        
         // auto-css-sprite
         var prefix = "acs-";
-        
+
+        if( classsign ){
+          prefix = prefix + classsign + "-";
+        }
+  
         var now = new Date();
         var d1 = parseInt(Math.random()*10000, 10) + "-";
-        var d2 = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate(); 
+        var d2 = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+
         canvasImageName = prefix + d1 + d2 + '.png';
+        var canvasImagePath = canvasImageName;
+        
+        if( spritepath ){
+          if( spritepath.charAt( spritepath.length - 1 ) == "/" ){
+            canvasImagePath = spritepath + canvasImagePath;
+          }else{
+            canvasImagePath = spritepath + "/" + canvasImagePath;
+          }
+        }
+        
+        var spriteCss = "";
+        var spriteHtml = "";
+        var spriteDemo = "";
         
         //画图
         for(var i=0, len=r.length; i<len; i++){
@@ -242,7 +299,7 @@ $box.on({
           
           ctx.drawImage(img, temp.x, temp.y);
           
-          var imgName = name.replace(/[^\w-]/g, "_");
+          var imgName = name.replace(/[^\w]/g, "-");
           
           var classname = prefix + imgName;
           
@@ -250,23 +307,22 @@ $box.on({
             'display:inline-block;'+
             'width:'+ (temp.w - space) +'px;'+
             'height:'+ (temp.h - space) +'px;'+
-            'background-image:url('+ canvasImageName +');'+
+            'background-image:url('+ canvasImagePath +');'+
             'background-repeat:no-repeat;'+
             'background-position:-'+ temp.x +'px -'+ temp.y +'px;'+
-          '}\n';
+          '}\r\n';
           
-          spriteHtml += '<span class="'+ classname +'"></span>';
-          
+          spriteHtml += '<span class="'+ classname +'"></span>\r\n';
         }
         
-        spriteDemo = '<!doctype html>'+
-          '<html>'+
-          '<head>'+
-            '<meta charset="UTF-8">'+
-            '<title>Auto CSS Sprite Demo</title>'+
-            '<style> span{margin:10px;} '+ spriteCss +'</style>'+
-          '</head>'+
-          '<body>'+ spriteHtml +'</body>'+
+        spriteDemo = '<!doctype html>\n'+
+          '<html>\n'+
+          '<head>\n'+
+            '<meta charset="UTF-8">\n'+
+            '<title>Auto CSS Sprite Demo</title>\n'+
+            '<style>\n span{margin:10px;}\n'+ spriteCss +'</style>\n'+
+          '</head>\n'+
+          '<body>\n'+ spriteHtml +'</body>\n'+
           '</html>';
         
         // 生成demo代码
