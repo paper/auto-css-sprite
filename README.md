@@ -64,20 +64,20 @@ auto-css-sprite
 3. Sample 个数
 
 
-		// L 移动的步长
-		// 【测试说明】以下测试，都是没有开启这2个开发工具。开启 firebug 或 chrome开发者工具，会影响测试值
-		// 【测试环境】chrome35 和 firefox30，样本10个，boxHeightStep为16px
-		// 【测试数据】big-and-small里面79张图片，单位 ms （毫秒）
-		// xStep=1 chrome消耗的时间：1907, firefox消耗的时间：890, 最佳利用率：0.961
-		// xStep=2 chrome消耗的时间：893 , firefox消耗的时间：506, 最佳利用率：0.955
-		// xStep=4 chrome消耗的时间：517 , firefox消耗的时间：286, 最佳利用率：0.938
-		var xStep = 2;
+	// L 移动的步长
+	// 【测试说明】以下测试，都是没有开启这2个开发工具。开启 firebug 或 chrome开发者工具，会影响测试值
+	// 【测试环境】chrome35 和 firefox30，样本10个，boxHeightStep为16px
+	// 【测试数据】big-and-small里面79张图片，单位 ms （毫秒）
+	// xStep=1 chrome消耗的时间：1907, firefox消耗的时间：890, 最佳利用率：0.961
+	// xStep=2 chrome消耗的时间：893 , firefox消耗的时间：506, 最佳利用率：0.955
+	// xStep=4 chrome消耗的时间：517 , firefox消耗的时间：286, 最佳利用率：0.938
+	var xStep = 2;
 
 所以，如果你想要更高的精度（毕竟是本地程序，多等待那么几秒，问题不大）
 
 请设置
 
-		xStep = 1; Sample >= 20; boxHeightStep <= 16
+	xStep = 1; Sample >= 20; boxHeightStep <= 16
 
 ####更多思考
 1. 如何更加有效、智能的 设置 boxHeightStep 最佳值？
