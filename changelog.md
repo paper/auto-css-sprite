@@ -20,7 +20,7 @@ auto-css-sprite
 ![](./demo/auto-css-sprite-927742.png)
 
 大家可以去看一下demo目录生成的例子 [demo](http://htmlpreview.github.io/?https://github.com/paper/auto-css-sprite/blob/master/demo/demo.html) (图片来源：test-images\big-and-small)。
-利用率已经可以达到了 95.9%
+利用率已达到 95.9%
 
 ## 0.1.0
 
