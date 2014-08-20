@@ -1,8 +1,13 @@
 auto-css-sprite
 ===========
 
-## changelog
-地址: [changelog.md](./changelog.md)
+## 其他语言版本
+python : https://github.com/paper/auto-css-sprite-python
+
+## Changelog
+地址: [changelog.md](./changelog.md) 
+
+内有示例图片 和 一些改动说明
 
 ## 帮助
 
@@ -88,7 +93,9 @@ auto-css-sprite
 
 看过文章和评论后，研究一下文章给出的  [Optimal Rectangle Packing: Initial Results](http://www.aaai.org/Papers/ICAPS/2003/ICAPS03-029.pdf)，单独提取 [algo.js](./js/algo.js) 核心算法 ，内有非常详细的注释。
 
-大家可以随意改成 java ，py 或 php等版本。 :D
+我已经写了一个简单的[python](https://github.com/paper/auto-css-sprite-python)版本
+
+大家可以随意改成 java ，php，c/c++ 等其他版本。 :D
 
 
 
