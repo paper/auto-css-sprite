@@ -24,10 +24,21 @@
     
     如果数组含有对象，仅仅 concat 或者 slice 是不能进行复制的
   -------------------------------------------------------------*/
-  function cloneArr(r){
+  function _clone(r){
     return JSON.parse( JSON.stringify(r) );
   }
   
+  //图片按照高度排序 高 -> 低
+  function sortByHeight(r){
+    var cloneR = _clone(r);
+    
+    var result = cloneR.sort(function(a, b){
+      return b.h - a.h
+    });
+    
+    return result;
+  }
+
   /**-------------------------------------------------------------
     @r {array} 矩形宽度和高度的数组集合
     Example: r = [ [10,20], [3,1], [4,8], ... ];
@@ -151,7 +162,8 @@
       
       height = height || 0;
       
-      var cloneArr = JSON.parse(JSON.stringify(r));
+      //var cloneArr = JSON.parse(JSON.stringify(r));
+      var cloneArr = _clone(r);
       
       // 最大宽度，最大高度，最小高度
       var MAXW = 10000;
@@ -316,72 +328,7 @@
       };
       
     }//end baseAlgo
-    
-    
-    function sortByFilter(r, filter){
-      var result = [];
-      var r = cloneArr(r);
 
-      function funcIn(){
-        if( r.length == 1 ){
-          result.push(r[0]);
-          return;
-        }
-        
-        var k = filter(r);
-        
-        result.push(r[k]);
-        r.splice(k, 1);
-        
-        funcIn();
-      }
-      
-      funcIn();
-      
-      return result;
-    }
-
-    //图片按照高度排序 高 -> 低
-    function sortByHeight(r){
-      return sortByFilter(r, function(r){
-        var h = 0;
-        var max = 0;
-        var k = 0;
-        
-        r.forEach(function(v, i){
-          h = v.h;
-          
-          if( h > max ){
-            max = h;
-            k = i;
-          }
-        });
-        
-        return k;
-      });
-    }//end sortByHeight
-    
-    //图片按照宽度排序 高 -> 低
-    function sortByWidth(r){
-      return sortByFilter(r, function(r){
-        var w = 0;
-        var max = 0;
-        var k = 0;
-        
-        r.forEach(function(v, i){
-          w = v.w;
-          
-          if( w > max ){
-            max = w;
-            k = i;
-          }
-        });
-        
-        return k;
-      });
-    }//end sortByWidth
-    
-    
     init();
     letsgo();
     
