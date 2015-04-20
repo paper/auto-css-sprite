@@ -1,15 +1,17 @@
-auto-css-sprite
-===========
+# auto-css-sprite
 
 ## 其他语言版本
-python : https://github.com/paper/auto-css-sprite-python
+**python :** https://github.com/paper/auto-css-sprite-python
 
 ## Changelog
 地址: [changelog.md](./changelog.md) 
 
 内有示例图片 和 一些改动说明
 
-## 帮助
+## 预览图
+![](demo/screen.png)
+
+## 简要说明
 
 ####布局与设计
 
